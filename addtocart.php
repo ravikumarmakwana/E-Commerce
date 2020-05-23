@@ -1,5 +1,5 @@
 <?php include 'dbconnect.php';
-	
+
 	$pid=$_REQUEST['pid'];
 	session_start();
 	$id=$_SESSION['id'];

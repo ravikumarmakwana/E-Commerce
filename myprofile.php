@@ -3,7 +3,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Shopping - Product</title>
+    <title>Shopping - My Profile</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     
@@ -29,40 +29,47 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-        <div class="hero-wrap hero-bread" style="background-image: url('images/bg_4.jpg');">
+    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_4.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
-            <h1 class="mb-0 bread">Product</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> / <span><a href="shop.php">Products</a></span> / <span>Product</span></p>
+            <h1 class="mb-0 bread">My Profile</h1>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> / <span><a href='shop.php'>Product</a></span> / <span><a href="cart.php">Cart</a></span> / <span>My Profile</span></p>
           </div>
         </div>
       </div>
     </div>
-    <?php
-      $pid=$_REQUEST['pid'];
-      $sql="SELECT * FROM product WHERE pid='$pid'";
-      $result=mysqli_query($con,$sql);
-      $row=mysqli_fetch_array($result);
-      $pname=$row['pname'];
-      $pdesc=$row['pdesc'];
-      $image=$row['image'];
-      $price=$row['price'];
-    ?>
-    <section class="ftco-section bg-light">
+    
+    <section class="ftco-section ftco-no-pb ftco-no-pt bg-light">
       <div class="container">
         <div class="row">
-          <div class="col-lg-6 mb-5 ftco-animate">
-            <a class="image-popup"><img src="<?php echo $image; ?>" class="img-fluid" alt="Colorlib Template"></a>
+          <div class="col-md-5 p-md-5 img img-2 d-flex justify-content-center align-items-center" style="background-image: url(images/user.webp);">
           </div>
-          <div class="col-lg-6 product-details pl-md-5 ftco-animate">
-            <h3><?php echo $pname; ?></h3>
-            <p class="price"><span>Rs. <?php echo $price; ?>  </span></p>
-            <p><?php echo $pdesc; ?></p>
-            <div class="row mt-4">
-              <div class="w-100"></div>
+          <div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
+            <div class="heading-section-bold mb-5 mt-md-5">
+              <div class="ml-md-0">
+                <?php
+                  $id=$_SESSION['id'];
+                  $sql="Select * from user where id='$id'";
+                  $result=mysqli_query($con,$sql);
+                  $data=mysqli_fetch_array($result);
+                  $name=$data['fname']." ".$data['lname'];
+                  $country=$data['country'];
+                  $address=$data['address'];
+                  $phoneno=$data['phoneno'];
+                  $email=$data['email'];
+                ?>
+                <h3 class="mb-4" style="text-transform: capitalize;color: teal;"><?php echo $name; ?></h3>
+              </div>
             </div>
-            <p><a href="addtocart_1.php?pid=<?php echo $pid; ?>&price=<?php echo $price; ?>" class="btn btn-primary py-3 px-5">Add to Cart</a></p>
+            <div class="pb-md-5">
+              <table cellpadding="10">
+                <tr><th>Country</th><td><?php echo $country; ?></td></tr>
+                <tr><th>Address</th><td><?php echo $address; ?></td></tr>
+                <tr><th>Phone No</th><td><?php echo $phoneno; ?></td></tr>
+                <tr><th>Email</th><td><?php echo $email; ?></td></tr>
+              </table>
+            </div>
           </div>
         </div>
       </div>

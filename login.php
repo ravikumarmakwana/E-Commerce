@@ -9,15 +9,21 @@
     $sql="SELECT * FROM user where username='$username' and pwd='$pwd'";
     $result=mysqli_query($con,$sql);
     $row=mysqli_fetch_array($result);
-    if($row['id']!=null)
+    if($row)
     {
-      $_SESSION['id']=$row['id'];
-      $msg="Login Successful";
+      if($row['id']!=null)
+      {
+        $_SESSION['id']=$row['id'];
+        $msg="Login Successful";
+        header("Location:shop.php");
+      }
+      else
+      {
+        $msg="Login Failed";
+      }
     }
     else
-    {
       $msg="Login Failed";
-    }
   }
 ?>
 <!DOCTYPE html>
@@ -55,7 +61,7 @@
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
             <h1 class="mb-0 bread">Login</h1>
-            <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> <span>Login</span></p>
+            <p class="breadcrumbs"><span class="mr-2"><a href="index.php">Home</a></span> / <span>Login</span></p>
           </div>
         </div>
       </div>
@@ -72,13 +78,13 @@
                      <div class="col-md-6">
                         <div class="form-group">
                           <label for="username">Username</label>
-                          <input type="text" name="username" class="form-control"/>
+                          <input type="text" required="required" name="username" class="form-control"/>
                         </div>
                       </div>
                       <div class="col-md-6">
                         <div class="form-group">
                           <label for="Password">Password</label>
-                          <input type="password" name="pwd" class="form-control"/>
+                          <input type="password" required="required" name="pwd" class="form-control"/>
                         </div>
                       </div>
                                 <input type="submit" name="login" value="Login" class="btn btn-primary py-3 px-4"/>

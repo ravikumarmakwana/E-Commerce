@@ -131,6 +131,9 @@
                   <span><?php echo $total/2; ?></span>
               </p>
               </div>
+              <br/>
+              <a class="btn btn-outline-danger col-md-6" href="myprofile.php">My Profile</a>
+              <br/>
             </div>
           </div>
         <div class="col-md-6">

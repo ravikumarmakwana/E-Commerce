@@ -2,11 +2,6 @@
 <?php include 'dbconnect.php'; ?>
 <?php
  
-  if(!isset($_SESSION['id']))
-  {
-    header("Location:login.php");
-  }
-
   if(isset($_REQUEST['msg']))
   {
     $msg=$_REQUEST['msg'];
@@ -91,7 +86,7 @@
                                 </div>
                                 <hr>
                                 <p class="bottom-area d-flex">
-                                    <a href="addtocart.php?pid=<?php echo $pid; ?>&price=<?php echo $price; ?>" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
+                                    <a href="addtocart_1.php?pid=<?php echo $pid; ?>&price=<?php echo $price; ?>" class="add-to-cart"><span>Add to cart <i class="ion-ios-add ml-1"></i></span></a>
                                 </p>
                             </div>
                         </div>

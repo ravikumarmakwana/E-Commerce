@@ -48,7 +48,7 @@
           <div class="col-md-7 py-5 wrap-about pb-md-5 ftco-animate">
             <div class="heading-section-bold mb-5 mt-md-5">
               <div class="ml-md-0">
-                <h2 class="mb-4" style="text-transform: capitalize;color: teal;">Ravikumar Makwana</h2>
+                <a href="https://ravi-kumar-makwana.herokuapp.com" target="_blank"><h2 class="mb-4" style="text-transform: capitalize;color: teal;">Ravikumar Makwana</h2></a>
               </div>
             </div>
             <div class="pb-md-5">
