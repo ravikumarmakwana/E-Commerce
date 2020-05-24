@@ -14,7 +14,6 @@
 		$regexname="/^[a-zA-Z]+$/";
 		$regexpwd="/^[a-zA-Z0-9.$@]*[.$@]+[a-zA-Z0-9.$@]*/";
 		$regexcountry="/^[a-z A-Z]+$/";
-		$regexaddress="/^[a-z\n\rA-Z]+$/";
 		$regexphoneno="/^[9|8|7|6][0-9]{9,10}$/";
 		$regexemail="/^[a-zA-Z0-9]+[a-zA-Z0-9@.]*\\@[a-zA-Z0-9]+\\.[a-zA-Z0-9@.]+$/";
 		if(!preg_match($regexname, $fname) || !preg_match($regexname, $lname) || !preg_match($regexname, $username))
@@ -29,10 +28,6 @@
 		{
 			$msg+="Please enter the valid country\n";
 		}
-		if(!preg_match($regexaddress, $address))
-		{
-			$msg+="Please enter the valid address\n";
-		}
 		if(!preg_match($regexphoneno, $phoneno))
 		{
 			$msg+="Please enter the valid phone no\n";
@@ -45,7 +40,7 @@
 		{
 			$sql="INSERT INTO user (fname,lname,username,pwd,country,address,phoneno,email) VALUES ('$fname','$lname','$username','$pwd','$country','$address','$phoneno','$email')";
 			$r=mysqli_query($con,$sql);
-			if($r)
+			if($r!=null)
 			{
 				$msg="Sign Up Successful. Welcome $fname ".$lname;
 			}
