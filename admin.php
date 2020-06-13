@@ -1,4 +1,6 @@
-<?php include 'header.php'; ?>
+<?php 
+	include 'header.php'; 
+?>
 <?php include 'dbconnect.php'; ?>
 <?php 
   if(!isset($_SESSION['id']))
@@ -12,35 +14,33 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <title>Shopping Admin Panel</title>
-    <meta charset="utf-8">
+
+<head>
+    <!-- Required meta tags-->
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    
-    <link href="https://fonts.googleapis.com/css?family=Lato:100,300,400,700,900" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css?family=Roboto+Condensed:300,400,700" rel="stylesheet">
+    <link href="css/font-face.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all">
+    <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all">
+    <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all">
 
-    <link rel="stylesheet" href="css/open-iconic-bootstrap.min.css">
-    <link rel="stylesheet" href="css/animate.css">
-    
-    <link rel="stylesheet" href="css/owl.carousel.min.css">
-    <link rel="stylesheet" href="css/owl.theme.default.min.css">
-    <link rel="stylesheet" href="css/magnific-popup.css">
+    <!-- Bootstrap CSS-->
+    <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all">
 
-    <link rel="stylesheet" href="css/aos.css">
+    <!-- Vendor CSS-->
+    <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all">
+    <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all">
+    <link href="vendor/wow/animate.css" rel="stylesheet" media="all">
+    <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all">
+    <link href="vendor/slick/slick.css" rel="stylesheet" media="all">
+    <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all">
+    <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
 
-    <link rel="stylesheet" href="css/ionicons.min.css">
+    <!-- Main CSS-->
+    <link href="css/theme.css" rel="stylesheet" media="all">
 
-    <link rel="stylesheet" href="css/bootstrap-datepicker.css">
-    <link rel="stylesheet" href="css/jquery.timepicker.css">
-
-    
-    <link rel="stylesheet" href="css/flaticon.css">
-    <link rel="stylesheet" href="css/icomoon.css">
-    <link rel="stylesheet" href="css/style.css">
-  </head>
-  <body>
-        <div class="hero-wrap hero-bread" style="background-image: url('images/bg_4.jpg');">
+</head>
+    <div class="hero-wrap hero-bread" style="background-image: url('images/bg_4.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
           <div class="col-md-9 ftco-animate text-center">
@@ -50,103 +50,157 @@
         </div>
       </div>
     </div>
-        
-        <section class="ftco-section ftco-cart">
-            <div class="container">
-                <div class="row">
-                <div class="col-md-12 ftco-animate">
-                    <div class="cart-list">
-                        <table class="table">
-                            <thead class="thead-primary">
-                              <tr class="text-center">
-                                <th>&nbsp;</th>
-                                <th>Product</th>
-                                <th>Price</th>
-                                <th>Quantity</th>
-                                <th>Update</th>
-                                <th>Delete</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                                <?php
+    <body class="animsition">
+            <div class="main-content">
+                 <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="overview-wrap">
+                                    <h2 class="title-1">Admin Panel</h2>
+                                </div>
+                            </div>
+                        </div>
+                        <?php 
+                            $sql_1="Select * from admin";
+                            $result_1=mysqli_query($con,$sql_1);
+                            $data_1=mysqli_fetch_array($result_1);
+                            $total_price_1=$data_1['total_price'];
+                            $visitors=$data_1['visitors'];
 
-                                $sql="Select * from product";
-                                $result=mysqli_query($con,$sql);
-                                while($row=mysqli_fetch_array($result))
-                                {
-                                    $pname=$row['pname'];
-                                    $pid=$row['pid'];
-                                    $pdesc=$row['pdesc'];
-                                    $stock=$row['stock'];
-                                    $price=$row['price'];
-                                    $image=$row['image'];
-                                ?>
-                              <tr class="text-center">
-                                <td class="image-prod"><img src="<?php echo $image; ?>" width='100%'/></td>
-                                
-                                <td class="product-name">
-                                    <h3><?php echo $pname; ?></h3>
-                                    <p><?php echo $pdesc; ?></p>
-                                </td>
-                                
-                                <td class="price">
-                                    <?php echo $price; ?>
-                                </td>
-                                
-                                <td class="quantity">
-                                    <?php echo $stock; ?>    
-                                </td>
-                                
-                                <td>
-                                    <?php
-                                        echo "<a href='updateproduct.php?pid=$pid' class='btn btn-outline-danger'>Update</a>";
-                                    ?>    
-                                </td>
+                            $sql_2="Select * from user";
+                            $result_2=mysqli_query($con,$sql_2);
+                            $number_menbers=0;
+                            while($data_2=mysqli_fetch_array($result_2))
+                                $number_menbers++;
 
-                                <td>  
-                                    <?php
-                                        echo "<a href='deleteproduct.php?pid=$pid' class='btn btn-outline-danger'>Delete</a>";
-                                    ?>
-                                </td>
+                            $sql_3="Select * from product";
+                            $result_3=mysqli_query($con,$sql_3);
+                            $number_product=0;
+                            while($data_3=mysqli_fetch_array($result_3))
+                                $number_product++;
+                        ?>
+                        <div class="row m-t-25">
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c1">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-account-o"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?php echo $visitors; ?></h2><br/>
+                                                <span>Number of Visitors</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart1"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c2">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-shopping-cart"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?php echo $number_menbers; ?></h2><br/>
+                                                <span>Members</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart2"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c3">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="zmdi zmdi-calendar-note"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?php echo $number_product; ?></h2><br/>
+                                                <span>Numbers of Products</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart3"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 col-lg-3">
+                                <div class="overview-item overview-item--c4">
+                                    <div class="overview__inner">
+                                        <div class="overview-box clearfix">
+                                            <div class="icon">
+                                                <i class="fa fa-inr"></i>
+                                            </div>
+                                            <div class="text">
+                                                <h2><?php echo $total_price_1; ?></h2><br/>
+                                                <span>Total Earnings</span>
+                                            </div>
+                                        </div>
+                                        <div class="overview-chart">
+                                            <canvas id="widgetChart4"></canvas>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                              </tr>
-                              <?php
-                                }
-                                ?><!-- END TR-->
-                            </tbody>
-                          </table>
-                      </div>
-                </div>
-            </div>     
+                    <div class="col-sm-12 col-lg-12">
+                        <div class="overview-item overview-item--c1">
+                            <div class="overview__inner">
+                                <div style="text-align: center;" class="overview-box clearfix">
+                                    <div class="text">
+                                    	<a href="admin1.php"><h2>Manage Products</h2></a><br/>
+                                        <span>Add New Products / Update Existing Products / Remove Products</span>
+                                    </div>
+                                </div>
+                                <div class="overview-chart">
+                                	<canvas id="widgetChart1"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+				</div>
             </div>
-        </section>
-      <div class="container">
-        <h2>Add New Product</h2>
-        <form action="productinsert.php" method="post" enctype="multipart/form-data">
-          <input type="text" name="pname" class="form-control col-lg-5" placeholder="Product Name"/><br/>
-          <textarea name="pdesc" rows="5" placeholder="Product Description" class="form-control col-lg-5" ></textarea><br/>
-          <input type="number" name="stock" placeholder="Stock" class="form-control col-lg-5" /><br/>
-          <input type="number" name="price" placeholder="Price" class="form-control col-lg-5" /><br/>
-          <input type="file" name="file" placeholder="Image"  class="form-control col-lg-5" /><br/>
-          <input type="submit" name="submit" value="Add Product" class="btn btn-outline-primary" /><br/>
-        </form>
-      </div>
-  <script src="js/jquery.min.js"></script>
-  <script src="js/jquery-migrate-3.0.1.min.js"></script>
-  <script src="js/popper.min.js"></script>
-  <script src="js/bootstrap.min.js"></script>
-  <script src="js/jquery.easing.1.3.js"></script>
-  <script src="js/jquery.waypoints.min.js"></script>
-  <script src="js/jquery.stellar.min.js"></script>
-  <script src="js/owl.carousel.min.js"></script>
-  <script src="js/jquery.magnific-popup.min.js"></script>
-  <script src="js/aos.js"></script>
-  <script src="js/jquery.animateNumber.min.js"></script>
-  <script src="js/bootstrap-datepicker.js"></script>
-  <script src="js/scrollax.min.js"></script>
-  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBVWaKrjvy3MaE7SQ74_uJiULgl1JY0H2s&sensor=false"></script>
-  <script src="js/google-map.js"></script>
-  <script src="js/main.js"></script>
-  </body>
+
+    <!-- Jquery JS-->
+    <script src="vendor/jquery-3.2.1.min.js"></script>
+    <!-- Bootstrap JS-->
+    <script src="vendor/bootstrap-4.1/popper.min.js"></script>
+    <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>
+    <!-- Vendor JS       -->
+    <script src="vendor/slick/slick.min.js">
+    </script>
+    <script src="vendor/wow/wow.min.js"></script>
+    <script src="vendor/animsition/animsition.min.js"></script>
+    <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+    </script>
+    <script src="vendor/counter-up/jquery.waypoints.min.js"></script>
+    <script src="vendor/counter-up/jquery.counterup.min.js">
+    </script>
+    <script src="vendor/circle-progress/circle-progress.min.js"></script>
+    <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <script src="vendor/chartjs/Chart.bundle.min.js"></script>
+    <script src="vendor/select2/select2.min.js">
+    </script>
+
+    <script src="js/main1.js"></script>
+
+</body>
+
 </html>
-<?php include 'footer.php'; ?>
+<!-- end document-->
+<?php 
+	include 'footer.php'; 
+?>

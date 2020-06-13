@@ -29,7 +29,15 @@
     <link rel="stylesheet" href="css/style.css">
   </head>
   <body>
-		
+		<?php
+      $sql1="Select * from admin";
+      $result=mysqli_query($con,$sql1);
+      $data=mysqli_fetch_array($result);
+      $visitors=$data['visitors'];
+      $visitors++;
+      $sql2="Update admin set visitors='$visitors'";
+      $result2=mysqli_query($con,$sql2);
+    ?>
 		<div class="hero-wrap js-fullheight" style="background-image: url('images/bg_4.jpg');">
       <div class="overlay"></div>
       <div class="container">

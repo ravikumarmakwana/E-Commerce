@@ -107,13 +107,22 @@
                 <h3>Cart Totals</h3>
                 <p class="d-flex">
                   <span>Discount</span>
-                  <span>50.00%</span>
+                  <span>00.00%</span>
                 </p>
               <hr>
               <p class="d-flex total-price">
                   <span>Total</span>
-                  <span><?php echo $total/2; ?></span>
+                  <span><?php echo $total; ?></span>
               </p>
+              <?php
+      $sql1="Select * from admin";
+      $result=mysqli_query($con,$sql1);
+      $data=mysqli_fetch_array($result);
+      $total_price=$data['total_price'];
+      $total_price+=$total;
+      $sql2="Update admin set total_price='$total_price'";
+      $result2=mysqli_query($con,$sql2);
+?>
               </div>
             </div>
           </div>

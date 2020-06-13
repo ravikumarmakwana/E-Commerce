@@ -123,12 +123,12 @@
                 <h3>Cart Totals</h3>
                 <p class="d-flex">
                   <span>Discount</span>
-                  <span>50.00 %</span>
+                  <span>00.00 %</span>
                 </p>
               <hr>
               <p class="d-flex total-price">
                   <span>Total</span>
-                  <span><?php echo $total/2; ?></span>
+                  <span><?php echo $total; ?></span>
               </p>
               </div>
               <br/>
