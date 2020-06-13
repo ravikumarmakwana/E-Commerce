@@ -24,6 +24,7 @@
     <link href="css/theme.css" rel="stylesheet" media="all">
 
 </head>
+<body class="animsition">
     <div class="hero-wrap hero-bread" style="background-image: url('images/bg_4.jpg');">
       <div class="container">
         <div class="row no-gutters slider-text align-items-center justify-content-center">
@@ -34,7 +35,6 @@
         </div>
       </div>
     </div>
-    <body class="animsition">
             <div class="main-content">
                  <div class="section__content section__content--p30">
                     <div class="container-fluid">
