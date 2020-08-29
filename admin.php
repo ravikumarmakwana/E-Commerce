@@ -14,7 +14,9 @@
 ?>
 <!DOCTYPE html>
 <html lang="en">
-
+<?php
+include 'Design/Design.php';
+?>
 <head>
     <!-- Required meta tags-->
     <link href="css/font-face.css" rel="stylesheet" media="all">
